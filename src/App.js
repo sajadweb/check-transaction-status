@@ -6,12 +6,13 @@ import './App.css';
 function App() {
   const [hash,setHash]=useState("0x552865a0dbbc5169a1da606598d3908f2652bd656e021bf74acd5f3b2d93591d");
   const [trn,setTrn]=useState(); 
+  const [loading,setLoading]=useState(false); 
   const getTransactionStatus=async ()=>{
+    setLoading(true)
     const itx=await itxProvider()
-    console.log("itx",itx)
     const t= await itx.getTransaction(hash);
     setTrn(t)
-    console.log("trn",t)
+    setLoading(false)
   }
   return (
     <div className="App">
@@ -21,7 +22,7 @@ function App() {
           <label>Transaction Hash</label>
            <input onChange={(e)=>setHash(e.target.value)}  value={hash} />
         </div>
-        <button onClick={getTransactionStatus}>Run</button>
+        <button onClick={getTransactionStatus}>{loading ? "Loading...":"Run"}</button>
        {trn && trn?.error && <div className="alert-div">
          <alert>
          {trn.message}

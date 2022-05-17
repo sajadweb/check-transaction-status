@@ -2,14 +2,11 @@ import {ethers} from 'ethers';
 import env from './env';
  
 export async function itxProvider() {
-  console.log("env",env);
     const itx = new ethers.providers.InfuraProvider(
         env.ETHEREUM_NETWORK,
         env.INFURA_PROJECT_ID
     );
-    console.log("itx",itx);
     async function getTransaction(relayTransactionHash){
-
       try {
         const data = await itx.getTransaction(relayTransactionHash); 
         if(data){
