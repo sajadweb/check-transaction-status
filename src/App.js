@@ -1,22 +1,40 @@
+import {useEffect, useState} from 'react';
 import logo from './logo.svg';
+import {itxProvider} from './common/itx-provider';
 import './App.css';
 
 function App() {
+  const [hash,setHash]=useState("0x552865a0dbbc5169a1da606598d3908f2652bd656e021bf74acd5f3b2d93591d");
+  const [trn,setTrn]=useState(); 
+  const getTransactionStatus=async ()=>{
+    const itx=await itxProvider()
+    console.log("itx",itx)
+    const t= await itx.getTransaction(hash);
+    setTrn(t)
+    console.log("trn",t)
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Check Transaction Status in Mainnet </h1>
+        <div className="form-group">
+          <label>Transaction Hash</label>
+           <input onChange={(e)=>setHash(e.target.value)}  value={hash} />
+        </div>
+        <button onClick={getTransactionStatus}>Run</button>
+       {trn && trn?.error && <div className="alert-div">
+         <alert>
+         {trn.message}
+           </alert> 
+         </div>}
+         {trn && !trn?.error && <div className="alert-div">
+      
+         Transaction Find
+          <br /><br /> 
+          Status : {trn.transaction.blockNumber? <alert className="alert-success">Success</alert> :<alert>block</alert>} <br /> <br />
+          From : {trn.transaction.from} <br /><br />
+          To : {trn.transaction.to} <br /><br /> 
+         </div>}
       </header>
     </div>
   );

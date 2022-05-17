@@ -36,3 +36,53 @@
     transform: rotate(360deg);
   }
 }
+
+.form-group {
+  margin-bottom: 15px;
+}
+input {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+input {
+  display: block;
+  min-width: 400px;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+button{
+  background-color: #04AA6D;
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  padding: 6px 25px;
+  margin-top: 4px;
+  border-radius: 5px;
+  word-spacing: 10px;
+}
+.alert-div{
+  margin-top: 30px;
+}
+alert{ 
+  background-color: #f23f3f;
+  color: white;
+  padding: 12px 25px;
+}
+.alert-success{
+  background-color: #04AA6D!important;
+}
